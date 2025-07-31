@@ -15,7 +15,7 @@ public class GlobalExceptionHandler{
         ErrorResponse errorResponse=new ErrorResponse();
         errorResponse.setTimestamp(LocalDateTime.now());
         errorResponse.setMessage(exception.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
 }

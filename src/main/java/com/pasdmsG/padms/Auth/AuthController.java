@@ -21,8 +21,9 @@ public class AuthController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(){
-        return new ResponseEntity<>("login", HttpStatus.CREATED);
+    public ResponseEntity<?> login(@RequestBody Auth userInfo){
+        AuthDto user=authServices.loginUser(userInfo);
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/profile")

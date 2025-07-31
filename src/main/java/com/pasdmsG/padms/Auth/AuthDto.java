@@ -7,17 +7,17 @@ public class AuthDto {
     private Integer phone;
     private String role;
     private String address;
-//    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
     public AuthDto() {
     }
 
-    public AuthDto(String name, Integer phone, String role, String address) {
+    public AuthDto(String name, Integer phone, String role, String address,LocalDateTime createdAt) {
         this.name = name;
         this.phone = phone;
         this.role = role;
         this.address = address;
-//        this.createdAt = createdAt;
+        this.createdAt = createdAt;
     }
 
     public String getName() {
@@ -52,11 +52,11 @@ public class AuthDto {
         this.address = address;
     }
 
-//    public LocalDateTime getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(LocalDateTime createdAt) {
-//        this.createdAt = createdAt;
-//    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
