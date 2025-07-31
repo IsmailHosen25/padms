@@ -27,6 +27,7 @@ public class AuthServicesImp implements AuthServices {
         user.setPhone(saveUser.getPhone());
         user.setRole(saveUser.getRole());
         user.setAddress(saveUser.getAddress());
+        user.setCreatedAt(saveUser.getCreatedAt());
         return user;
     }
 
