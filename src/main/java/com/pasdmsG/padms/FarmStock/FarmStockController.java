@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
 @RequestMapping("v1/users/{phone}/farmstock")
 public class FarmStockController {
@@ -23,7 +25,13 @@ public class FarmStockController {
 
     @GetMapping()
     public ResponseEntity<?> getFarmStock(@PathVariable Integer phone){
-        return new ResponseEntity<>(phone, HttpStatus.ACCEPTED);
+        List<FarmStockDto> farmStockList=farmStockServices.getFarmStocks(phone);
+        return new ResponseEntity<>(farmStockList, HttpStatus.ACCEPTED);
+    }
+    @GetMapping("/owner")
+    public ResponseEntity<?> getAllFarmStock(){
+        List<FarmStockDto> farmStockDtoList=farmStockServices.getAllFarmStocks();
+        return new ResponseEntity<>("hello",HttpStatus.ACCEPTED);
     }
 
 
