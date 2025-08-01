@@ -1,8 +1,11 @@
 package com.pasdmsG.padms.User;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pasdmsG.padms.FarmStock.FarmStock;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -11,11 +14,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Column(unique = true, nullable = false)
     private Integer phone;
     private String password;
     private String role;
     private String address;
     private LocalDateTime createdAt;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<FarmStock> farmStocks;
 
     public User() {
     }
@@ -84,5 +93,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<FarmStock> getFarmStocks() {
+        return farmStocks;
+    }
+
+    public void setFarmStocks(List<FarmStock> farmStocks) {
+        this.farmStocks = farmStocks;
     }
 }
