@@ -46,6 +46,14 @@ public class FarmStockServicesImp implements FarmStockServices {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<FarmStockDto> getAllFarmStocks() {
+        List<FarmStock> farmStockList=farmStockRepository.findAll();
+        return farmStockList.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
     private FarmStockDto convertToDto(FarmStock farmStock) {
         FarmStockDto dto = new FarmStockDto();
         dto.setAvailableApproximateKg(farmStock.getAvailableApproximateKg());

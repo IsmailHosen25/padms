@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@RequestMapping("v1/users/{phone}/farmstock")
+@RequestMapping("v1/users/farmstock")
 public class FarmStockController {
 
     private FarmStockServices farmStockServices;
@@ -17,13 +17,13 @@ public class FarmStockController {
         this.farmStockServices = farmStockServices;
     }
 
-    @PostMapping()
+    @PostMapping("/{phone}")
     public ResponseEntity<?> addFarmStock(@PathVariable Integer phone,@RequestBody FarmStock stockInf){
         FarmStockDto addNewFarmStock=farmStockServices.addNewFarmStock(phone,stockInf);
         return new ResponseEntity<>(addNewFarmStock,HttpStatus.ACCEPTED);
     }
 
-    @GetMapping()
+    @GetMapping("/{phone}")
     public ResponseEntity<?> getFarmStock(@PathVariable Integer phone){
         List<FarmStockDto> farmStockList=farmStockServices.getFarmStocks(phone);
         return new ResponseEntity<>(farmStockList, HttpStatus.ACCEPTED);
@@ -31,7 +31,7 @@ public class FarmStockController {
     @GetMapping("/owner")
     public ResponseEntity<?> getAllFarmStock(){
         List<FarmStockDto> farmStockDtoList=farmStockServices.getAllFarmStocks();
-        return new ResponseEntity<>("hello",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(farmStockDtoList,HttpStatus.ACCEPTED);
     }
 
 
