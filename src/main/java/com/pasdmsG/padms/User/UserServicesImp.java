@@ -13,12 +13,12 @@ public class UserServicesImp implements UserServices{
     }
 
     @Override
-    public UserDto getUserByPhone(Integer phone) {
+    public UsersResponse getUserByPhone(Integer phone) {
         User getUser=userRepository.getUserByPhone(phone);
         if(getUser==null){
             throw new ErrorMessage("Somthing went wrong, please login agin");
         }
-        UserDto returnUser=new UserDto();
+        UsersResponse returnUser=new UsersResponse();
         returnUser.setName(getUser.getName());
         returnUser.setPhone(getUser.getPhone());
         returnUser.setRole(getUser.getRole());
@@ -28,15 +28,13 @@ public class UserServicesImp implements UserServices{
     }
 
     @Override
-    public UserDto udtUsers(Integer phone,UserDto udtInfo) {
-        if(phone.equals(udtInfo.getPhone())){
-
+    public UsersResponse udtUsers(Integer phone, UserPutRequest udtInfo) {
             User user=userRepository.getUserByPhone(phone);
             if(user!=null){
                 user.setName(udtInfo.getName());
                 user.setAddress(udtInfo.getAddress());
                 userRepository.save(user);
-                UserDto udtUser= new UserDto();
+                UsersResponse udtUser= new UsersResponse();
                 udtUser.setName(user.getName());
                 udtUser.setPhone(user.getPhone());
                 udtUser.setRole(user.getRole());
@@ -48,9 +46,5 @@ public class UserServicesImp implements UserServices{
                 throw new ErrorMessage("somthing went wrong, pleas login again");
             }
 
-        }
-        else{
-            throw new ErrorMessage("somthing went wrong, pleas login again");
-        }
     }
 }

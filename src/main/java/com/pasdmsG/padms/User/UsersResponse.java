@@ -2,17 +2,17 @@ package com.pasdmsG.padms.User;
 
 import java.time.LocalDateTime;
 
-public class UserDto {
+public class UsersResponse {
     private String name;
     private Integer phone;
     private String role;
     private String address;
     private LocalDateTime createdAt;
 
-    public UserDto() {
+    public UsersResponse() {
     }
 
-    public UserDto(String name, Integer phone, String role, String address,LocalDateTime createdAt) {
+    public UsersResponse(String name, Integer phone, String role, String address, LocalDateTime createdAt) {
         this.name = name;
         this.phone = phone;
         this.role = role;
