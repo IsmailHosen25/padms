@@ -2,6 +2,7 @@ package com.pasdmsG.padms.Auth;
 
 import com.pasdmsG.padms.ErrorExaptionMessage.ErrorMessage;
 import com.pasdmsG.padms.User.User;
+import com.pasdmsG.padms.User.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User newUserData){
-        AuthDto newUser=authServices.creatNewUser(newUserData);
+    public ResponseEntity<?> register(@RequestBody UserRegisterRequest newUserData){
+        UserResponse newUser=authServices.creatNewUser(newUserData);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Auth userInfo){
-        AuthDto user=authServices.loginUser(userInfo);
+    public ResponseEntity<?> login(@RequestBody UserLoginRequest loginInfo){
+        UserResponse user=authServices.loginUser(loginInfo);
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 

@@ -2,23 +2,12 @@ package com.pasdmsG.padms.Auth;
 
 import java.time.LocalDateTime;
 
-public class AuthDto {
+public class UserResponse {
     private String name;
     private Integer phone;
     private String role;
     private String address;
     private LocalDateTime createdAt;
-
-    public AuthDto() {
-    }
-
-    public AuthDto(String name, Integer phone, String role, String address,LocalDateTime createdAt) {
-        this.name = name;
-        this.phone = phone;
-        this.role = role;
-        this.address = address;
-        this.createdAt = createdAt;
-    }
 
     public String getName() {
         return name;
@@ -28,20 +17,20 @@ public class AuthDto {
         this.name = name;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public Integer getPhone() {
         return phone;
     }
 
     public void setPhone(Integer phone) {
         this.phone = phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getAddress() {

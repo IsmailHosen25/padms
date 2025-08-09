@@ -1,5 +1,6 @@
 package com.pasdmsG.padms.Auth;
-public class Auth {
+
+public class UserLoginRequest {
     private Integer phone;
     private String password;
 

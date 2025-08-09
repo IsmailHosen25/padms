@@ -2,6 +2,7 @@ package com.pasdmsG.padms.Auth;
 
 import com.pasdmsG.padms.ErrorExaptionMessage.ErrorMessage;
 import com.pasdmsG.padms.User.User;
+import com.pasdmsG.padms.User.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,13 +17,21 @@ public class AuthServicesImp implements AuthServices {
     }
 
     @Override
-    public AuthDto creatNewUser(User newUserData) {
+    public UserResponse creatNewUser(UserRegisterRequest newUserData) {
         if(authRepository.existsByPhone(newUserData.getPhone())){
            throw new ErrorMessage("user alrady exist");
         }
-        newUserData.setCreatedAt(LocalDateTime.now());
-        User saveUser=authRepository.save(newUserData);
-        AuthDto user=new AuthDto();
+        User newUserAdd=new User();
+        newUserAdd.setCreatedAt(LocalDateTime.now());
+        newUserAdd.setAddress(newUserData.getAddress());
+        newUserAdd.setName(newUserData.getName());
+        newUserAdd.setPassword(newUserData.getPassword());
+        newUserAdd.setPhone(newUserData.getPhone());
+        newUserAdd.setRole(newUserData.getRole());
+        User saveUser=authRepository.save(newUserAdd);
+
+//        for user responces
+        UserResponse user=new UserResponse();
         user.setName(saveUser.getName());
         user.setPhone(saveUser.getPhone());
         user.setRole(saveUser.getRole());
@@ -32,12 +41,12 @@ public class AuthServicesImp implements AuthServices {
     }
 
     @Override
-    public AuthDto loginUser(Auth userInfo) {
-        if(authRepository.existsByPhone(userInfo.getPhone())){
+    public UserResponse loginUser(UserLoginRequest loginInfo) {
+        if(authRepository.existsByPhone(loginInfo.getPhone())){
 
-            User user=authRepository.getUserByphone(userInfo.getPhone());
-            if(user.getPassword().equals(userInfo.getPassword())){
-                AuthDto validUser=new AuthDto();
+            User user=authRepository.getUserByphone(loginInfo.getPhone());
+            if(user.getPassword().equals(loginInfo.getPassword())){
+                UserResponse validUser=new UserResponse();
                 validUser.setName(user.getName());
                 validUser.setPhone(user.getPhone());
                 validUser.setRole(user.getRole());

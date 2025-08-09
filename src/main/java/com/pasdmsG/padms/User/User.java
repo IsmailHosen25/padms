@@ -2,7 +2,9 @@ package com.pasdmsG.padms.User;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pasdmsG.padms.FarmStock.FarmStock;
+import com.pasdmsG.padms.Order.Order;
 import jakarta.persistence.*;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,6 +27,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<FarmStock> farmStocks;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
+    @JsonBackReference
+    private List<Order> orders;
 
     public User() {
     }
@@ -101,5 +107,13 @@ public class User {
 
     public void setFarmStocks(List<FarmStock> farmStocks) {
         this.farmStocks = farmStocks;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
