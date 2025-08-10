@@ -1,11 +1,12 @@
 package com.pasdmsG.padms.FarmStock;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface FarmStockRepository extends JpaRepository<FarmStock,Long> {
-    List<FarmStock> findAllByUserPhone(Integer phone);
+    List<FarmStockFarmerView> findAllByUserPhone(Integer phone);
 }

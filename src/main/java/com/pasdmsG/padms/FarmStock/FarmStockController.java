@@ -18,21 +18,21 @@ public class FarmStockController {
     }
 
     @PostMapping("/{phone}")
-    public ResponseEntity<?> addFarmStock(@PathVariable Integer phone,@RequestBody FarmStock stockInf){
-        FarmStockDto addNewFarmStock=farmStockServices.addNewFarmStock(phone,stockInf);
+    public ResponseEntity<?> addFarmStock(@PathVariable Integer phone,@RequestBody FarmStockPostRequest stockInf){
+        FarmStockResponse addNewFarmStock=farmStockServices.addNewFarmStock(phone,stockInf);
         return new ResponseEntity<>(addNewFarmStock,HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{phone}")
     public ResponseEntity<?> getFarmStock(@PathVariable Integer phone){
-        List<FarmStockDto> farmStockList=farmStockServices.getFarmStocks(phone);
+        List<FarmStockFarmerView> farmStockList=farmStockServices.getFarmStocks(phone);
         return new ResponseEntity<>(farmStockList, HttpStatus.ACCEPTED);
     }
-    @GetMapping("/owner")
-    public ResponseEntity<?> getAllFarmStock(){
-        List<FarmStockDto> farmStockDtoList=farmStockServices.getAllFarmStocks();
-        return new ResponseEntity<>(farmStockDtoList,HttpStatus.ACCEPTED);
-    }
+//    @GetMapping("/owner")
+//    public ResponseEntity<?> getAllFarmStock(){
+//        List<FarmStockResponse> farmStockDtoList=farmStockServices.getAllFarmStocks();
+//        return new ResponseEntity<>(farmStockDtoList,HttpStatus.ACCEPTED);
+//    }
 
 
 

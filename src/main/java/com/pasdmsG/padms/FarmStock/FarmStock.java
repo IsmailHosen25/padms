@@ -3,6 +3,8 @@ package com.pasdmsG.padms.FarmStock;
 import com.pasdmsG.padms.User.User;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="farm_stock")
 public class FarmStock {
@@ -21,7 +23,9 @@ public class FarmStock {
     @Column(name = "chicken_type", nullable = false)
     private String chickenType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private LocalDateTime createdAt;
+
+    @ManyToOne()
     @JoinColumn(name = "user_phone", referencedColumnName = "phone")
     private User user;
 
@@ -63,5 +67,13 @@ public class FarmStock {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

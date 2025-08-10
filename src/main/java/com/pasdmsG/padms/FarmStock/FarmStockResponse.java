@@ -1,13 +1,18 @@
 package com.pasdmsG.padms.FarmStock;
 
 import com.pasdmsG.padms.User.User;
-import jakarta.persistence.*;
 
-public class FarmStockDto {
+import java.time.LocalDateTime;
 
+public class FarmStockResponse {
     private Double availableApproximateKg;
     private Double pricePerKg;
     private String chickenType;
+    private LocalDateTime createdAt;
+
+    public static Object builder() {
+        return null;
+    }
 
     public Double getAvailableApproximateKg() {
         return availableApproximateKg;
@@ -33,5 +38,12 @@ public class FarmStockDto {
         this.chickenType = chickenType;
     }
 
-}
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+}
