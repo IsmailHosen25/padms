@@ -2,6 +2,7 @@ package com.pasdmsG.padms.User;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pasdmsG.padms.FarmStock.FarmStock;
+import com.pasdmsG.padms.Order.Order;
 import jakarta.persistence.*;
 
 
@@ -24,6 +25,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<FarmStock> farmStockList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
 
 
     public User() {
