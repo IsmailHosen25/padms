@@ -1,6 +1,7 @@
 package com.pasdmsG.padms.User;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pasdmsG.padms.FarmStock.FarmStock;
 import jakarta.persistence.*;
 
 
@@ -21,6 +22,8 @@ public class User {
     private String address;
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "user")
+    private List<FarmStock> farmStockList;
 
 
     public User() {
@@ -92,4 +95,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public List<FarmStock> getFarmStockList() {
+        return farmStockList;
+    }
+
+    public void setFarmStockList(List<FarmStock> farmStockList) {
+        this.farmStockList = farmStockList;
+    }
 }
