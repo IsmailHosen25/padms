@@ -1,6 +1,7 @@
 package com.pasdmsG.padms.User;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pasdmsG.padms.Delivery.Delivery;
 import com.pasdmsG.padms.FarmStock.FarmStock;
 import com.pasdmsG.padms.Order.Order;
 import jakarta.persistence.*;
@@ -29,6 +30,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orderList;
 
+    @OneToMany(mappedBy = "user")
+    private List<Delivery> deliveryList;
 
     public User() {
     }
@@ -105,5 +108,21 @@ public class User {
 
     public void setFarmStockList(List<FarmStock> farmStockList) {
         this.farmStockList = farmStockList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    public List<Delivery> getDeliveryList() {
+        return deliveryList;
+    }
+
+    public void setDeliveryList(List<Delivery> deliveryList) {
+        this.deliveryList = deliveryList;
     }
 }
